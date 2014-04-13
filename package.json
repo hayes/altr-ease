@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/hayes/altr-ease",
   "dependencies": {
-    "ease-component": "1.0.0"
+    "ease-component": "1.0.0",
+    "raf": "0.1.1"
   }
 }

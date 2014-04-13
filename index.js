@@ -1,4 +1,5 @@
 var ease = require('ease-component')
+  , raf = require('raf').polyfill
 
 module.exports = ease_filter
 
@@ -6,10 +7,9 @@ function ease_filter(parts, change) {
   var fn = 'linear'
   , current = {}
   , target = {}
-  , rate = 10
   , ms = 1
-  , timer
   , start
+  , wait
   , prev
 
   var update_ms = this.create_part(parts[0], function(d) {
@@ -18,16 +18,19 @@ function ease_filter(parts, change) {
   })
 
   var update_fn = this.create_part(parts[1] || 'linear', function(d) {
-    animate()
-  })
-
-  var update_rate = this.create_part(parts[2] || '10', function(d) {
+    fn = d || 'linear'
     animate()
   })
 
   function animate() {
-    clearTimeout(timer)
-    timer = setTimeout(update, rate)
+    if(wait) {
+      return
+    }
+
+    wait = raf(function() {
+      wait = null
+      update()
+    })
   }
 
   return function(d, ctx) {
@@ -37,7 +40,6 @@ function ease_filter(parts, change) {
     start = new Date
     update_ms(ctx)
     update_fn(ctx)
-    update_rate(ctx)
   }
 
   function update() {
