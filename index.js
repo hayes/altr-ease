@@ -11,7 +11,6 @@ function ease_filter(parts, change) {
   , timer
   , start
   , prev
-  , 
 
   var update_ms = this.create_part(parts[0], function(d) {
     ms = +d
