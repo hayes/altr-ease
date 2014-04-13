@@ -1,0 +1,22 @@
+{
+  "name": "altr-ease",
+  "version": "0.0.0",
+  "description": "easing filter for altr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hayes/altr-ease.git"
+  },
+  "author": "Michael Hayes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hayes/altr-ease/issues"
+  },
+  "homepage": "https://github.com/hayes/altr-ease",
+  "dependencies": {
+    "ease-component": "1.0.0"
+  }
+}
