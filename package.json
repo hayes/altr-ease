@@ -1,6 +1,6 @@
 {
   "name": "altr-ease",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "easing filter for altr",
   "main": "index.js",
   "scripts": {
