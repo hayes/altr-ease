@@ -59,24 +59,28 @@ function ease_filter(parts, change) {
   }
 
   function update_part(prev, target, p) {
-    if(typeof prev !== typeof target) {
-      return target
-    } else if(Array.isArray(target)) {
-      return target.map(function(v, i) {
-        return update_part(prev[i], v, p)
-      })
-    } else if(typeof target === 'object') {
-      return Object.keys(target).reduce(function(val, key) {
-        val[key] = update_part(prev[key], target[key], p)
+    var result = target
+      , keys
 
-        return val
-      }, {})
-    } else if(prev === target) {
-      return target
-    } else if(typeof target === 'number') {
+    if(typeof prev !== typeof target) {
+      return result
+    } else if(Array.isArray(target)) {
+      result = Array(target.length)
+
+      for(var i = 0, l = target.length; i < l; ++i) {
+        result[i] = update_part(prev[i], target[i], p)
+      }
+    } else if(typeof target === 'object') {
+      keys = Object.keys(target)
+      result = {}
+
+      for(var i = 0, l = keys.length; i < l; ++i) {
+        result[keys[i]] = update_part(prev[keys[i]], target[keys[i]], p)
+      }
+    } else if(prev !== target && typeof target === 'number') {
       return prev + (target - prev) * p
     }
 
-    return target
+    return result
   }
 }
